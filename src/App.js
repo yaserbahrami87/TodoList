@@ -1,9 +1,13 @@
 import React from 'react'
 import './App.css';
+import ListItems from './Components/ListItems';
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {faTrash} from '@fortawesome/free-solid-svg-icons'
+library.add(faTrash)
 export class App extends React.Component {
   constructor(props) {
     super(props)
-  
+    this.ref=React.createRef()
     this.state = {
        items:[],
        currentItem:{
@@ -15,46 +19,58 @@ export class App extends React.Component {
   
   changeHandler=(e)=>
   {
-    this.setState(
+    if(e.target.value.length!==0)
+    {
+      this.setState(
         {
           currentItem:{
               item: e.target.value,
               key:Date.now()
           }
         })
+    }    
   }
 
   add=(e)=>
   {
-    e.preventDefault()
-    const newItems=[...this.state.items,this.state.currentItem]
+    e.preventDefault() 
+    if(this.state.currentItem.item.length!==0)
+    {         
+      const newItems=[...this.state.items,this.state.currentItem]
+      this.setState({
+          items:newItems,
+          currentItem:{
+            item:'',
+            key:''
+          }
+      })
+      this.ref.current.value=""
+    }
+  }
+
+  deleteItems=(id)=>
+  {
+    
+    const idList=this.state.items.filter(item=>item.key!==id)
     this.setState({
-        items:newItems,
-        currentItem:{
-          item:'',
-          key:''
-        }
+      items:idList
     })
+    console.log(id)
   }
 
   render() {
     return (
       <div className="div_body"> 
+        <h1>To Do List</h1>
         <form onSubmit={this.add}>
             <input type="text" 
                   placeholder="Please Enter the Todo"
+                  name="item"
                   onChange={this.changeHandler}
+                  ref={this.ref}
             />
             <button>Add</button>
-            <div id="list">
-              <ul>
-              {
-                this.state.items.map(i=>(
-                  <li key={i.key}>{i.item}</li>
-                ))
-              }
-              </ul>
-            </div>
+            <ListItems items={this.state.items} deleteItems={this.deleteItems}/>
         </form>    
       </div>
     )
