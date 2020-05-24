@@ -1,8 +1,50 @@
+*
+{
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
 .div_body
 {
   width: 400px;
   min-height:500px ;
   background-color: cornflowerblue;
-  margin: 40px auto;
+  margin: 40px auto;  
+  padding: 10px;
+
+}
+
+.div_body input[type="text"]
+{
+  width: 270px;
+  font-weight: bold;
+  outline: none;
+  padding: 10px;
+  background-color: silver;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.div_body input[type="text"]::placeholder
+{
+  color: #ffffff;
+}
+
+.div_body button
+{
+  padding: 10px;
+  font-weight: bold;
+  width: 100px;
+  outline: none;
+  border-radius: 5px;
+}
+
+#list
+{
+  width: 370px;
+  min-height: 400px;
+  background-color: tan;
+  margin-top: 20px;
+  padding: 10px;
 
 }
