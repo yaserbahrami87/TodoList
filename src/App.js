@@ -49,8 +49,7 @@ export class App extends React.Component {
   }
 
   deleteItems=(id)=>
-  {
-    
+  {    
     const idList=this.state.items.filter(item=>item.key!==id)
     this.setState({
       items:idList
@@ -58,10 +57,25 @@ export class App extends React.Component {
     console.log(id)
   }
 
+  editItem=(val,id)=>
+  {
+    const items2=this.state.items;
+    items2.map(item=>{
+      if(item.key===id)
+      {
+        item.item=val
+      }      
+    })
+    this.setState({
+      items:items2
+    })
+  }
+
   render() {
     return (
       <div className="div_body"> 
-        <h1>To Do List</h1>
+        <h1>To Do List with React</h1>
+        <h1>Add , Edit & Remove </h1>
         <form onSubmit={this.add}>
             <input type="text" 
                   placeholder="Please Enter the Todo"
@@ -70,7 +84,7 @@ export class App extends React.Component {
                   ref={this.ref}
             />
             <button>Add</button>
-            <ListItems items={this.state.items} deleteItems={this.deleteItems}/>
+            <ListItems items={this.state.items} deleteItems={this.deleteItems} editItem={this.editItem}/>
         </form>    
       </div>
     )

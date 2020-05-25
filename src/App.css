@@ -19,9 +19,10 @@ body
   border-radius: 5px;
 }
 
-.div_body h1:nth-child(1)
+.div_body > h1
 {
   text-align: center;
+  color: #ffffff;
 }
 
 .div_body input[type="text"]
@@ -87,4 +88,10 @@ body
   float: right;
   cursor: pointer;
   color:#ffffff;
+}
+
+#list input[type="text"]
+{
+  background-color:#ff99c2;
+  padding: 0px;
 }
