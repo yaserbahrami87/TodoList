@@ -1,10 +1,11 @@
 import React from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-
+import FlipMove from 'react-flip-move'
 function ListItems(props) {
 
     const items=props.items;
     const listItem=items.map(i=>{
+                
         return <li key={i.key}>
                     <input
                         type="text"
@@ -21,14 +22,17 @@ function ListItems(props) {
                     </span>                    
                     
                 </li>
+                
     })
     return (
         <>            
             <div id="list" >
               <ul>
-              {
-                 listItem
-              }
+                <FlipMove>
+                        {
+                            listItem
+                        }
+                </FlipMove>
               </ul>
             </div>
         </>
